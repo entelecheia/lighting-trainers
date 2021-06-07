@@ -1,0 +1,18 @@
+# @package dataset
+defaults:
+  - nlp/default
+_target_: lightning_transformers.task.nlp.token_classification.TokenClassificationDataModule
+cfg:
+  task_name: spacing
+  dataset_name: /workspace/projects/lightning-trainers/ekonspacing/ekonspacing.py
+  dataset_config_name: small
+  train_file: null
+  validation_file: null
+  test_file: null
+  load_from_cache_file: True
+  max_length: 128
+  label_all_tokens: False
+  pad_to_max_length: False
+  limit_train_samples: null
+  limit_val_samples: null
+  limit_test_samples: null
