@@ -11,8 +11,8 @@ cfg:
   train_val_split: null
   max_samples: null
   cache_dir: null
-  padding: 'max_length'
-  truncation: 'only_first'
+  padding: "max_length"
+  truncation: "only_first"
   preprocessing_num_workers: 1
   load_from_cache_file: True
   max_length: 128

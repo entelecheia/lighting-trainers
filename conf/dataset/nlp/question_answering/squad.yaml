@@ -4,7 +4,7 @@ defaults:
 _target_: lightning_transformers.task.nlp.question_answering.datasets.SquadDataModule
 cfg:
   dataset_name: squad
-  dataset_config_name: 'plain_text'
+  dataset_config_name: "plain_text"
   max_length: 384
   version_2_with_negative: False
   null_score_diff_threshold: .0

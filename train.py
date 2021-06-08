@@ -1,8 +1,7 @@
 """The shell entry point `$ pl-transformers-train` is also available"""
 import hydra
-from omegaconf import DictConfig
-
 from lightning_transformers.cli.train import main
+from omegaconf import DictConfig
 
 
 @hydra.main(config_path="./conf", config_name="config")

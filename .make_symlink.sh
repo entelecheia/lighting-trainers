@@ -18,7 +18,7 @@ function make_synmlink () {
         echo "Symbolic link [$LINK_NAME] exists already."
     else
         echo "Making symbolic link [$LINK_NAME] to [$TARGET_DIR]."
-        ln -s $TARGET_DIR $LINK_NAME 
+        ln -s $TARGET_DIR $LINK_NAME
     fi
 }
 
@@ -51,13 +51,13 @@ while [ "$1" != "" ]; do
     shift
 done
 
-# echo "command: $COMMAND" 
+# echo "command: $COMMAND"
 # echo "limit: $LIMIT"
 
 case $LINK_NAME in
     data)
         make_synmlink
-        ;; 
+        ;;
     models)
         make_synmlink
         ;;

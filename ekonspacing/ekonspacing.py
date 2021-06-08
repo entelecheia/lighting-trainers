@@ -17,7 +17,6 @@
 import datasets
 from smart_open import open
 
-
 logger = datasets.logging.get_logger(__name__)
 
 
@@ -52,9 +51,7 @@ _DEFAULT = "default"
 
 _VERSION = "1.0.0"
 
-_TAGS = [
-    "I", "O", "B", "E", "S"
-]
+_TAGS = ["I", "O", "B", "E", "S"]
 
 
 def _get_tags(words):
@@ -72,6 +69,7 @@ def _get_tags(words):
                     tags.append(_TAGS.index("I"))
     return tags
 
+
 class eKonSpacingConfig(datasets.BuilderConfig):
     def __init__(self, **kwargs):
         """BuilderConfig for eKonSpacing.
@@ -80,7 +78,8 @@ class eKonSpacingConfig(datasets.BuilderConfig):
           **kwargs: keyword arguments forwarded to super.
         """
         super(eKonSpacingConfig, self).__init__(**kwargs)
-    
+
+
 class eKonSpacing(datasets.GeneratorBasedBuilder):
     """Korean spacing recognition dataset"""
 
@@ -88,15 +87,15 @@ class eKonSpacing(datasets.GeneratorBasedBuilder):
 
     BUILDER_CONFIGS = [
         eKonSpacingConfig(
-            name="default", 
+            name="default",
             version=datasets.Version(_VERSION, ""),
-            description="Korean spacing recognition dataset"
+            description="Korean spacing recognition dataset",
         ),
         eKonSpacingConfig(
-            name="small", 
+            name="small",
             version=datasets.Version(_VERSION, ""),
-            description="Korean spacing recognition small dataset"
-        )
+            description="Korean spacing recognition small dataset",
+        ),
     ]
 
     DEFAULT_CONFIG_NAME = _DEFAULT
@@ -107,9 +106,7 @@ class eKonSpacing(datasets.GeneratorBasedBuilder):
                 {
                     "text": datasets.Value("string"),
                     "tokens": datasets.Sequence(datasets.Value("string")),
-                    "spacing_tags": datasets.Sequence(
-                        datasets.features.ClassLabel(names=_TAGS)
-                    ),
+                    "spacing_tags": datasets.Sequence(datasets.features.ClassLabel(names=_TAGS)),
                 }
             ),
             supervised_keys=None,
@@ -120,7 +117,7 @@ class eKonSpacing(datasets.GeneratorBasedBuilder):
 
     def _split_generators(self, dl_manager):
         """Returns SplitGenerators."""
-        if self.config.name == 'small':
+        if self.config.name == "small":
             urls_to_download = {
                 "train": f"{_URL}{_SMALL_TRAINING_FILE}",
                 "validation": f"{_URL}{_SMALL_DEV_FILE}",
@@ -132,16 +129,23 @@ class eKonSpacing(datasets.GeneratorBasedBuilder):
                 "validation": f"{_URL}{_DEV_FILE}",
                 "test": f"{_URL}{_TEST_FILE}",
             }
-        
+
         if self.config.data_files:
             downloaded_files = self.config.data_files
         else:
             downloaded_files = dl_manager.download(urls_to_download)
         print(downloaded_files)
         return [
-            datasets.SplitGenerator(name=datasets.Split.TRAIN, gen_kwargs={"filepath": downloaded_files["train"]}),
-            datasets.SplitGenerator(name=datasets.Split.VALIDATION, gen_kwargs={"filepath": downloaded_files["validation"]}),
-            datasets.SplitGenerator(name=datasets.Split.TEST, gen_kwargs={"filepath": downloaded_files["test"]}),
+            datasets.SplitGenerator(
+                name=datasets.Split.TRAIN, gen_kwargs={"filepath": downloaded_files["train"]}
+            ),
+            datasets.SplitGenerator(
+                name=datasets.Split.VALIDATION,
+                gen_kwargs={"filepath": downloaded_files["validation"]},
+            ),
+            datasets.SplitGenerator(
+                name=datasets.Split.TEST, gen_kwargs={"filepath": downloaded_files["test"]}
+            ),
         ]
 
     def _generate_examples(self, filepath):
@@ -159,6 +163,6 @@ class eKonSpacing(datasets.GeneratorBasedBuilder):
                     spacing_tags = _get_tags(words)
                     yield id_, {
                         "text": row,
-                        "tokens": list(''.join(words)),
+                        "tokens": list("".join(words)),
                         "spacing_tags": spacing_tags,
                     }

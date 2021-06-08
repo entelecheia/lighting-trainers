@@ -1,4 +1,4 @@
 # @package _global_
 hydra:
-    run:
-        dir: ./outputs/${job_name}/${job_name}-${model_name}-${now:%Y%m%d_%H%M%S}
+  run:
+    dir: ./outputs/${job_name}/${job_name}-${model_name}-${now:%Y%m%d_%H%M%S}
