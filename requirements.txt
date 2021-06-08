@@ -8,8 +8,8 @@ transformers
 datasets
 # --------- hydra --------- #
 hydra-core==1.1.0.rc1
-hydra-colorlog==1.1.0.dev1
-hydra-optuna-sweeper==1.1.0.dev2
+hydra-colorlog
+hydra-optuna-sweeper
 # --------- linters --------- #
 pre-commit
 black

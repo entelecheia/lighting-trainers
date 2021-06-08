@@ -4,7 +4,7 @@ defaults:
 _target_: lightning_transformers.task.nlp.token_classification.TokenClassificationDataModule
 cfg:
   task_name: spacing
-  dataset_name: /workspace/projects/lightning-trainers/ekonspacing/ekonspacing.py
+  dataset_name: /workspace/projects/transformer-datasets/datasets/ekonspacing/ekonspacing.py
   dataset_config_name: small
   train_file: null
   validation_file: null
