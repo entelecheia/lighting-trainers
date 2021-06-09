@@ -3,7 +3,7 @@
 LINK_NAME=""
 
 function make_synmlink () {
-    TARGET_DIR="../../data/projects/lightning-trainer/$LINK_NAME"
+    TARGET_DIR="../../data/projects/lightning-trainers/$LINK_NAME"
 
     if [ ! -d $TARGET_DIR ]; then
         echo "Creating an $LINK_NAME directory."
